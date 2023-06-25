@@ -1,9 +1,17 @@
 #container {
+    box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
+    width: 14em;
+    gap: 2px;
 
 }
 
-#container > div {
+.grid-element {
     background-color: aqua;
+    /* margin: 1em; 
+    */
+    padding: 1em; 
+    width: 1em;
 }
+
