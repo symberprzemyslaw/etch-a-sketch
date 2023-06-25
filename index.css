@@ -1,17 +1,22 @@
-#container {
+body {
     box-sizing: border-box;
+
+
+}
+#container {
     display: flex;
     flex-wrap: wrap;
-    width: 14em;
-    gap: 2px;
+     /*gap: 2px; */
+    width: 900px;
+    height: 900px;
+    border: solid black 2px;
+    
+    /*background-color: lightblue; */
 
 }
 
 .grid-element {
-    background-color: aqua;
     /* margin: 1em; 
     */
-    padding: 1em; 
-    width: 1em;
 }
 
