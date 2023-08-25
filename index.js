@@ -1,6 +1,8 @@
 const canvas = document.querySelector("#canvas")
 const resetBtn = document.querySelector("#reset")
 const colorInput = document.querySelector("#color")
+const eraser = document.querySelector("#eraser")
+let drawingColor;
 let qnt;
 
 
@@ -26,6 +28,9 @@ resetBtn.addEventListener('click', () => {
     canvas.innerHTML = ''
     getQnt()
     drawGrid()
+})
+eraser.addEventListener('click', () => {
+    colorInput.value = '#ffffff'
 })
     
 drawGrid()
