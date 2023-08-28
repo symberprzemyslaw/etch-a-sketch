@@ -1,17 +1,29 @@
+//Recent colors should be displayed as palette
+//Is there any way to download image?
+
+//Dom elements
+const container = document.querySelector('.container')
 const palette = document.querySelector(".palette")
 const popup = document.querySelector(".popup")
 const popupInput = document.querySelector(".popup > input")
 const popupBtn = document.querySelector(".popup > button")
 const canvas = document.querySelector("#canvas")
 const resetBtn = document.querySelector("#reset")
-const colorInput = document.querySelector("#color")
+const colorInput = document.querySelector("color")
 const eraser = document.querySelector("#eraser")
-let drawingColor;
-let qnt;
+let drawingColor = 'black';
+let qnt = 50;
 
 
+palette.addEventListener(("input" || 'click'), (e) => {
+    if(e.target.value){
+      drawingColor = e.target.value
+    }
+    console.log('ping')
+})
 
-let getQnt = () => {
+
+let getQnt = () => { // function that set input to the limit (no hoisting)
     qnt = prompt('How many?')
     if(qnt > 100){
         qnt = 100
@@ -19,7 +31,6 @@ let getQnt = () => {
     console.log(qnt)
 };
 
-getQnt()
 let canDraw = true
 
 
@@ -37,10 +48,9 @@ resetBtn.addEventListener('click', () => { // reset button
 eraser.addEventListener('click', () => {
     colorInput.value = '#ffffff'
 })
-    
-drawGrid()
-function drawGrid(){
 
+function drawGrid(){ // function that draws grid refering to input value (qnt)
+    
     for(let i = 0; i < (qnt * qnt);i++){
         let div = document.createElement("div")
         canvas.appendChild(div)
@@ -50,8 +60,11 @@ function drawGrid(){
     let allGrids = document.querySelectorAll('.grid-element')
     allGrids.forEach( (x) => {
         x.addEventListener('mouseover', function(e){
-            canDraw ? this.style.backgroundColor = colorInput.value :  null
+            canDraw ? this.style.backgroundColor = drawingColor : 'black'
         })
     })
 }
 
+
+getQnt()
+drawGrid()

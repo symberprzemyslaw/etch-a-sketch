@@ -59,7 +59,7 @@ body {
 
 .popup {
     background-color: rgb(241, 235, 227);
-    position: none;
+    position: fixed;
     display: none;
     flex-direction: column;
     justify-content: center;
