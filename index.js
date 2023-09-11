@@ -11,34 +11,34 @@ const canvas = document.querySelector("#canvas")
 const resetBtn = document.querySelector("#reset")
 const colorInput = document.querySelector("color")
 const eraser = document.querySelector("#eraser")
+
 let drawingColor = 'black';
 let qnt = 50;
+let canDraw = true
 
-
-palette.addEventListener(("input" || 'click'), (e) => {
+// color selection and palette
+palette.addEventListener(('click'), (e) => {
     if(e.target.value){
       drawingColor = e.target.value
     }
     console.log('ping')
 })
 
-
-let getQnt = () => { // function that set input to the limit (no hoisting)
-    qnt = prompt('How many?')
-    if(qnt > 100){
-        qnt = 100
+palette.addEventListener(('input'), (e) => {
+    if(e.target.value){
+      drawingColor = e.target.value
     }
-    console.log(qnt)
-};
-
-let canDraw = true
-
-
-document.addEventListener('keydown',e => { //shift down
-    e.key === 'Shift' ? canDraw = false : null
+    console.log('ping')
 })
-document.addEventListener('keyup',e => { // shift up
-    e.key === 'Shift' ? canDraw = true : null
+
+// drawing
+canvas.addEventListener('mousedown',e => { 
+    e.preventDefault()
+    canDraw = true
+})
+canvas.addEventListener('mouseup',e => { 
+    e.preventDefault()
+    canDraw = false
 })
 resetBtn.addEventListener('click', () => { // reset button
     canvas.innerHTML = ''
@@ -49,6 +49,11 @@ eraser.addEventListener('click', () => {
     colorInput.value = '#ffffff'
 })
 
+canvas.addEventListener('mouseover', function(e){
+        canDraw ? e.target.style.backgroundColor = drawingColor : 'black'
+    })
+
+
 function drawGrid(){ // function that draws grid refering to input value (qnt)
     
     for(let i = 0; i < (qnt * qnt);i++){
@@ -57,13 +62,14 @@ function drawGrid(){ // function that draws grid refering to input value (qnt)
         div.classList.add('grid-element')
         div.style.width = `${700 /qnt}px`
     }
-    let allGrids = document.querySelectorAll('.grid-element')
-    allGrids.forEach( (x) => {
-        x.addEventListener('mouseover', function(e){
-            canDraw ? this.style.backgroundColor = drawingColor : 'black'
-        })
-    })
 }
+const getQnt = () => { // function that set input to the limit (no hoisting)
+    qnt = prompt('How many?')
+    if(qnt > 100){
+        qnt = 100
+    }
+    console.log(qnt)
+};
 
 
 getQnt()

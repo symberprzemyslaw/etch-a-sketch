@@ -17,7 +17,7 @@ body {
 }
 
 #canvas {
-    background-color: white;
+    background-color: white !important;
     display: flex;
     flex-wrap: wrap;
     width: 700px;
@@ -109,5 +109,11 @@ input[type="color"]::-moz-color-swatch {
     border: 2px solid black;
     text-align: center;
     font-size: 12px;
+    margin-top: 1em;
+}
+
+#reset {
+    margin-top: auto;
+    margin-bottom: 1em;
 }
 
