@@ -12,12 +12,40 @@ const resetBtn = document.querySelector("#reset")
 const colorInput = document.querySelector("color")
 const eraser = document.querySelector("#eraser")
 
+
+
 let drawingColor = 'black';
 let qnt = 50;
-let canDraw = true
+let canDraw = false
+eraser.value = '#ffffff'
+
+const drawGrid = () => { // function that draws grid refering to input value (qnt)
+    
+    for(let i = 0; i < (qnt * qnt);i++){
+        let div = document.createElement("div")
+        canvas.appendChild(div)
+        div.classList.add('grid-element')
+        div.style.width = `${Math.floor(700 /qnt)}px`
+        div.style.height = `${Math.floor(700 /qnt)}px`
+    }
+}
+
+const setResolution = (value) => {
+    if(value > 100){
+        qnt = 100
+    } else {
+        qnt = value
+    }
+
+}
+
+
+
+/* DOM */
 
 // color selection and palette
 palette.addEventListener(('click'), (e) => {
+    if (e.detail !== 2) e.preventDefault();
     if(e.target.value){
       drawingColor = e.target.value
     }
@@ -41,36 +69,27 @@ canvas.addEventListener('mouseup',e => {
     canDraw = false
 })
 resetBtn.addEventListener('click', () => { // reset button
+    popup.style.display = 'flex'
     canvas.innerHTML = ''
-    getQnt()
     drawGrid()
 })
-eraser.addEventListener('click', () => {
-    colorInput.value = '#ffffff'
-})
-
 canvas.addEventListener('mouseover', function(e){
         canDraw ? e.target.style.backgroundColor = drawingColor : 'black'
     })
+canvas.addEventListener("click", (e) => {
+    e.target.style.backgroundColor = drawingColor
+})
 
-
-function drawGrid(){ // function that draws grid refering to input value (qnt)
-    
-    for(let i = 0; i < (qnt * qnt);i++){
-        let div = document.createElement("div")
-        canvas.appendChild(div)
-        div.classList.add('grid-element')
-        div.style.width = `${700 /qnt}px`
-    }
-}
-const getQnt = () => { // function that set input to the limit (no hoisting)
-    qnt = prompt('How many?')
-    if(qnt > 100){
-        qnt = 100
-    }
+popupInput.addEventListener('input', (e) => {
+    setResolution(e.target.value)
     console.log(qnt)
-};
+})
 
 
-getQnt()
-drawGrid()
+popup.addEventListener('submit', e => {
+    e.preventDefault()
+    setResolution(popupInput.value)
+    popup.style.display = 'none'
+    drawGrid()
+    console.log(qnt)
+})
