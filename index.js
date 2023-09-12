@@ -1,6 +1,3 @@
-//Recent colors should be displayed as palette
-//Is there any way to download image?
-
 //Dom elements
 const container = document.querySelector('.container')
 const palette = document.querySelector(".palette")
@@ -13,20 +10,18 @@ const colorInput = document.querySelector("color")
 const eraser = document.querySelector("#eraser")
 
 
-
+// Variables
 let drawingColor = 'black';
 let qnt = 50;
 let canDraw = false
 eraser.value = '#ffffff'
 
-const drawGrid = () => { // function that draws grid refering to input value (qnt)
+// function that draws grid refering to input value (qnt)
+const drawGrid = () => { 
     let newWidth = canvas.offsetWidth - (canvas.offsetWidth % qnt)
-    let newHeight = canvas.offsetHeight - (canvas.offsetHeight % qnt)
-    console.log(newWidth)    
+    let newHeight = canvas.offsetHeight - (canvas.offsetHeight % qnt)    
     canvas.style.width = `${newWidth}px` 
     canvas.style.height = `${newHeight}px`
-    canvas.style.backgroundColor = 'red'
-    console.log(canvas.offsetWidth)
  
     for(let i = 0; i < (qnt * qnt);i++){
         let div = document.createElement("div")
@@ -46,8 +41,6 @@ const setResolution = (value) => {
     
 }
 
-
-
 /* DOM */
 
 // color selection and palette
@@ -56,14 +49,12 @@ palette.addEventListener(('click'), (e) => {
     if(e.target.value){
       drawingColor = e.target.value
     }
-    console.log('ping')
 })
 
 palette.addEventListener(('input'), (e) => {
     if(e.target.value){
       drawingColor = e.target.value
     }
-    console.log('ping')
 })
 
 // drawing
@@ -87,12 +78,7 @@ canvas.addEventListener("click", (e) => {
     e.target.style.backgroundColor = drawingColor
 })
 
-popupInput.addEventListener('input', (e) => {
-    setResolution(e.target.value)
-    console.log(qnt)
-})
-
-
+//handling resolution input submit and enter button
 popup.addEventListener('submit', e => {
     e.preventDefault()
     setResolution(popupInput.value)
