@@ -20,13 +20,20 @@ let canDraw = false
 eraser.value = '#ffffff'
 
 const drawGrid = () => { // function that draws grid refering to input value (qnt)
-    
+    let newWidth = canvas.offsetWidth - (canvas.offsetWidth % qnt)
+    let newHeight = canvas.offsetHeight - (canvas.offsetHeight % qnt)
+    console.log(newWidth)    
+    canvas.style.width = `${newWidth}px` 
+    canvas.style.height = `${newHeight}px`
+    canvas.style.backgroundColor = 'red'
+    console.log(canvas.offsetWidth)
+ 
     for(let i = 0; i < (qnt * qnt);i++){
         let div = document.createElement("div")
         canvas.appendChild(div)
         div.classList.add('grid-element')
-        div.style.width = `${Math.floor(700 /qnt)}px`
-        div.style.height = `${Math.floor(700 /qnt)}px`
+        div.style.width = `${newWidth /qnt}px`
+        div.style.height = `${newHeight /qnt}px`
     }
 }
 
@@ -36,7 +43,7 @@ const setResolution = (value) => {
     } else {
         qnt = value
     }
-
+    
 }
 
 
