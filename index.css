@@ -125,8 +125,14 @@ input[type="color"]::-moz-color-swatch {
     margin-top: 1em;
 }
 
+#download {
+    margin-top: 1em;
+    background-color: rgb(157, 207, 240);
+}
+
 #reset {
     margin-top: auto;
     margin-bottom: 1em;
 }
+
 

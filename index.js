@@ -5,6 +5,7 @@ const popupInput = document.querySelector(".popup > input")
 const canvas = document.querySelector("#canvas")
 const resetBtn = document.querySelector("#reset")
 const eraser = document.querySelector("#eraser")
+const download = document.querySelector("#download")
 
 
 // Variables
@@ -83,3 +84,14 @@ popup.addEventListener('submit', e => {
     popup.style.display = 'none'
     drawGrid()
 })
+
+//downloading image
+download.addEventListener("click", function () {
+    htmlToImage.toJpeg(canvas, { quality: 0.95 })
+    .then(function (dataUrl) {
+      const link = document.createElement('a');
+      link.download = 'my-image-name.jpeg';
+      link.href = dataUrl;
+      link.click();
+    });
+  });
