@@ -1,12 +1,9 @@
 //Dom elements
-const container = document.querySelector('.container')
 const palette = document.querySelector(".palette")
 const popup = document.querySelector(".popup")
 const popupInput = document.querySelector(".popup > input")
-const popupBtn = document.querySelector(".popup > button")
 const canvas = document.querySelector("#canvas")
 const resetBtn = document.querySelector("#reset")
-const colorInput = document.querySelector("color")
 const eraser = document.querySelector("#eraser")
 
 
@@ -66,14 +63,15 @@ canvas.addEventListener('mouseup',e => {
     e.preventDefault()
     canDraw = false
 })
-resetBtn.addEventListener('click', () => { // reset button
+// reset button
+resetBtn.addEventListener('click', () => { 
     popup.style.display = 'flex'
     canvas.innerHTML = ''
-    drawGrid()
 })
 canvas.addEventListener('mouseover', function(e){
         canDraw ? e.target.style.backgroundColor = drawingColor : 'black'
     })
+
 canvas.addEventListener("click", (e) => {
     e.target.style.backgroundColor = drawingColor
 })
@@ -84,5 +82,4 @@ popup.addEventListener('submit', e => {
     setResolution(popupInput.value)
     popup.style.display = 'none'
     drawGrid()
-    console.log(qnt)
 })
